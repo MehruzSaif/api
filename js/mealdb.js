@@ -1,3 +1,5 @@
+document.getElementById('error-message').style.display = 'none';
+
 const searchFood = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
@@ -14,7 +16,12 @@ const searchFood = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => displaySearchResult(data.meals))
+            .catch(error => displayError(error));
     }
+}
+
+const displayError = error => {
+    document.getElementById('error-message').style.display = 'block';
 }
 
 const displaySearchResult = meals => {
